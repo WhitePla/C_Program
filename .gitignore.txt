@@ -55,4 +55,9 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# dump 관련 파일/폴더
+dump/
+*.dump
+
 # End of https://www.toptal.com/developers/gitignore/api/c
+*.txt
