@@ -325,19 +325,11 @@ void ex_12(){
 
         }else if(tolower(ch) < 'm'){ //받은 문자가 m보다 작을때
 
-            printf("-------------------구역나눔---------------------\n");
-
-            printf("\n"); //디버깅
-            printf("현재 입력받은 낮은 문자는 %c\n", ch); //디버깅
-
             for(char m = tolower(ch); m < 'm'; m++){ //m까지 ch값을 증가시킴
 
                 count++;//카운드 증가
 
             }
-
-            printf("\n"); //디버깅
-            printf("현재 낮은 count =  %d\n", count); //디버깅
 
             if(count <= temp){ //count가 temp보다 작거나 같으면 저장
 
@@ -346,22 +338,10 @@ void ex_12(){
                 
                 count = 0;
 
-                printf("\n"); //디버깅
-                printf("현재 저장된 낮은 temp 문자는 %d\n", temp); //디버깅
-                printf("현재 저장된 낮은 chtemp 문자는 %c\n", chtemp); //디버깅
-                printf("\n"); //디버깅
-                            
-                printf("-------------------구역나눔---------------------\n");
-
             }
             
 
         }else if(tolower(ch) > 'm'){ //받은 문자가 m보다 클때
-
-            printf("-------------------구역나눔---------------------\n");
-
-            printf("\n"); //디버깅
-            printf("현재 입력받은 높은 문자는 %c\n", tolower(ch)); //디버깅
 
             for(char m = tolower(ch); m > 'm'; m--){ //m까지 ch값을 감소시킴
 
@@ -369,22 +349,12 @@ void ex_12(){
 
             }
 
-            printf("\n"); //디버깅
-            printf("현재 높은 count =  %d\n", count); //디버깅
-
             if(count <= temp){ //count가 temp보다 작거나 같으면 저장
 
                 temp = count;
                 chtemp = tolower(ch);
                 
                 count = 0;
-
-                printf("\n"); //디버깅
-                printf("현재 저장된 높은 temp 문자는 %d\n", temp); //디버깅
-                printf("현재 저장된 높은 chtemp 문자는 %c\n", chtemp); //디버깅
-                printf("\n"); //디버깅
-
-                 printf("-------------------구역나눔---------------------\n");
 
             }
         }
