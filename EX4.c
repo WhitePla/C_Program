@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 void ex_01(){
 
@@ -274,6 +275,125 @@ void ex_10(){
 
 }
 
+void ex_11(){
+
+    int mid = 7;
+
+    for(int i = 0; i <= mid; i++){
+        for(int j = 0; j <= mid * 2;  j++){
+            
+            if(abs(j - mid) <= i){
+
+                printf("%d", abs(j - mid));
+            
+            }
+            else{
+                printf(" ");
+            }
+        }
+        printf("\n");
+    }
+
+}
+
+void ex_12(){
+
+    int num, count = 0, temp = 1000;
+    char ch, chtemp;
+
+    do{
+
+        printf("반복횟수입력 : ");
+        scanf("%d", &num);
+
+        while(getchar() != '\n');
+
+    }while(0 > num || num > 9);
+
+
+    for(int i = 0; i < num; i++){
+
+        printf("문자 입력 : ");
+        ch = getchar();
+
+        while(getchar() != '\n');
+
+        if(tolower(ch) == 'm'){
+
+            temp = 0;
+            chtemp = tolower(ch);
+
+        }else if(tolower(ch) < 'm'){ //받은 문자가 m보다 작을때
+
+            printf("-------------------구역나눔---------------------\n");
+
+            printf("\n"); //디버깅
+            printf("현재 입력받은 낮은 문자는 %c\n", ch); //디버깅
+
+            for(char m = tolower(ch); m < 'm'; m++){ //m까지 ch값을 증가시킴
+
+                count++;//카운드 증가
+
+            }
+
+            printf("\n"); //디버깅
+            printf("현재 낮은 count =  %d\n", count); //디버깅
+
+            if(count <= temp){ //count가 temp보다 작거나 같으면 저장
+
+                temp = count;
+                chtemp = tolower(ch);
+                
+                count = 0;
+
+                printf("\n"); //디버깅
+                printf("현재 저장된 낮은 temp 문자는 %d\n", temp); //디버깅
+                printf("현재 저장된 낮은 chtemp 문자는 %c\n", chtemp); //디버깅
+                printf("\n"); //디버깅
+                            
+                printf("-------------------구역나눔---------------------\n");
+
+            }
+            
+
+        }else if(tolower(ch) > 'm'){ //받은 문자가 m보다 클때
+
+            printf("-------------------구역나눔---------------------\n");
+
+            printf("\n"); //디버깅
+            printf("현재 입력받은 높은 문자는 %c\n", tolower(ch)); //디버깅
+
+            for(char m = tolower(ch); m > 'm'; m--){ //m까지 ch값을 감소시킴
+
+                count++;//카운드 증가
+
+            }
+
+            printf("\n"); //디버깅
+            printf("현재 높은 count =  %d\n", count); //디버깅
+
+            if(count <= temp){ //count가 temp보다 작거나 같으면 저장
+
+                temp = count;
+                chtemp = tolower(ch);
+                
+                count = 0;
+
+                printf("\n"); //디버깅
+                printf("현재 저장된 높은 temp 문자는 %d\n", temp); //디버깅
+                printf("현재 저장된 높은 chtemp 문자는 %c\n", chtemp); //디버깅
+                printf("\n"); //디버깅
+
+                 printf("-------------------구역나눔---------------------\n");
+
+            }
+        }
+    }
+
+    printf("m과 가장 가까운 문자는 = %c", chtemp);
+
+}
+
 int main(){
     
     //C언어 선택반복제어
@@ -287,9 +407,9 @@ int main(){
     // ex_07(); // if사용해서 나머지 0나오면 나가버려
     // ex_08();
     // ex_09();
-    ex_10(); 
+    // ex_10(); 
     // ex_11();
-    // ex_12();
+    ex_12();
 
     return 0;
 }
