@@ -310,7 +310,6 @@ void ex_12(){
 
     }while(0 > num || num > 9);
 
-
     for(int i = 0; i < num; i++){
 
         printf("문자 입력 : ");
@@ -318,50 +317,19 @@ void ex_12(){
 
         while(getchar() != '\n');
 
-        if(tolower(ch) == 'm'){
+        count = abs(ch - 'm');
 
-            temp = 0;
+        if(count <= temp){ //count가 temp보다 작거나 같으면 저장
+
+            temp = count;
             chtemp = tolower(ch);
 
-        }else if(tolower(ch) < 'm'){ //받은 문자가 m보다 작을때
-
-            for(char m = tolower(ch); m < 'm'; m++){ //m까지 ch값을 증가시킴
-
-                count++;//카운드 증가
-
-            }
-
-            if(count <= temp){ //count가 temp보다 작거나 같으면 저장
-
-                temp = count;
-                chtemp = tolower(ch);
-                
-                count = 0;
-
-            }
-            
-
-        }else if(tolower(ch) > 'm'){ //받은 문자가 m보다 클때
-
-            for(char m = tolower(ch); m > 'm'; m--){ //m까지 ch값을 감소시킴
-
-                count++;//카운드 증가
-
-            }
-
-            if(count <= temp){ //count가 temp보다 작거나 같으면 저장
-
-                temp = count;
-                chtemp = tolower(ch);
-                
-                count = 0;
-
-            }
         }
+
     }
 
     printf("m과 가장 가까운 문자는 = %c", chtemp);
-
+    
 }
 
 int main(){
