@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 void ex_01(){
 
@@ -140,20 +141,277 @@ void ex_05(){
 
 }
 
+void ex_06(){
+
+    char str[100], *pc;
+
+    pc= str;
+
+    while(1){
+
+        printf("문자열입력 : ");
+
+        fgets(str, sizeof(str), stdin);
+
+        if(*pc == '\n'){
+        
+            break;
+        
+        }
+        
+        if(str[strlen(str) - 1] == '\n') str[strlen(str) - 1] = '\0';
+        
+        int count = 0;
+
+        for(int i = 0; *(pc + i); i++){
+
+            count++;
+
+        }
+
+        printf("입력된 문자열 길이 = %d\n", count);
+
+    }
+
+}
+
+void ex_07(){
+
+    int count = 0;
+
+    char str[100], ch, *pc;
+
+    pc = str;
+    
+    while(1){
+
+        printf("문자열 입력 : ");
+        
+        fgets(str, sizeof(str), stdin);
+        
+        if(*pc == '\n'){
+            
+            break;
+            
+        }
+        
+        if(str[strlen(str) - 1] == '\n') str[strlen(str) - 1] = '\0';
+        
+        printf("문자 입력 : ");
+
+        ch = getchar();
+
+        while(getchar() != '\n');
+
+        int count = 0;
+
+        for(int i = 0; *(pc + i); i++){
+
+            if(*(pc + i) == ch){
+
+                count++;
+
+            }
+
+        }
+
+        int width = strlen(pc) + 5;
+
+        printf("%*s에서 %c는 %d개.\n", width, pc, ch, count);
+
+    }
+
+}
+
+void ex_08(){
+
+    char sa[100], sb[100], *pa, *pb;
+
+    pa = sa;
+    pb = sb;
+
+    printf("문자열 입력 : ");
+
+    fgets(sa, sizeof(sa), stdin);
+
+    if(sa[strlen(sa) - 1] == '\n') sa[strlen(sa) - 1] = '\0';
+
+    printf("문자열 입력 : ");
+
+    fgets(sb, sizeof(sb), stdin);
+        
+    if(sb[strlen(sb) - 1] == '\n') sb[strlen(sb) - 1] = '\0';
+        
+    printf("sa = %s, sb = %s\n", pa, pb);
+
+    while(*pa){
+
+        pa++;
+
+    }
+
+    while(*pb){
+
+        *pa = *pb;
+
+        pa++;
+        pb++;
+
+    }
+
+    *pa = '\0';
+
+    printf("sa = sa + sb = %s, sb = %s", sa, sb);
+
+}
+
+void ex_09(){
+
+    char str[3][100], *pa, *pb, *pc;
+
+    pa = str[0];
+    pb = str[1];
+    pc = str[2];
+
+    for(int i = 0; i < (sizeof(str) / sizeof(str[0]) - 1); i++){
+
+        printf("str[%d] 문자열 입력 : ", i);
+
+        fgets(str[i], sizeof(str[i]), stdin);
+
+        if(str[i][strlen(str[i]) - 1] == '\n') str[i][strlen(str[i]) - 1] = '\0';
+
+    }
+
+    while(*pa){
+
+        *pc = *pa;
+
+        pa++;
+        pc++;
+
+    }
+
+    while(*pb){
+
+        *pc = *pb;
+
+        pb++;
+        pc++;
+
+    }
+
+    *pc = '\0';
+
+    printf("str[2] = %s", str[2]);
+
+}
+
+void ex_10(){
+
+    char stra[100], strb[100], *pa;
+
+    pa = stra;
+
+    printf("문자열 입력 : ");
+
+    fgets(stra, sizeof(stra), stdin);
+
+    if(stra[strlen(stra) - 1] == '\n') stra[strlen(stra) - 1] = '\0';
+
+    printf("stra = %s, strb = ", pa);
+
+    for(int i = 0; stra[i]; i++){
+
+        strb[i] = toupper(*(pa + i));
+
+    }
+
+    strb[strlen(strb) + 1] = '\0';
+
+    printf("%s", strb);
+
+}
+
+void ex_11(){
+
+    char str[2][100], (*p)[100];
+
+    
+    printf("문자열 입력 : ");
+    
+    fgets(str[0], sizeof(str[0]), stdin);
+    
+    if(str[0][strlen(str[0]) - 1] == '\n') str[0][strlen(str[0]) - 1] = '\0';
+    
+    p = str;
+
+    strcpy(str[1], *(p+0));
+
+    strupr(str[1]);
+
+    printf("str[0] = %s, str[1] = %s", str[0], str[1]);
+
+}
+
+void ex_12(){
+
+    char stra[100], strb[100], *pa, *pb;
+
+    pa = stra;
+    pb = strb;
+
+    printf("문자열 입력 : ");
+    
+    fgets(stra, sizeof(stra), stdin);
+
+    if(stra[strlen(stra) - 1] == '\n') stra[strlen(stra) - 1] = '\0';
+
+    printf("문자열 입력 : ");
+    
+    fgets(strb, sizeof(strb), stdin);
+
+    if(strb[strlen(strb) - 1] == '\n') strb[strlen(strb) - 1] = '\0';
+
+    while(*pa && *pb){
+
+        if(*pa != *pb){
+
+            break;
+
+        }
+
+        pa++;
+        pb++;
+
+    }
+
+    if(*pa == '\0' && *pb == '\0'){
+
+        printf("%s, %s, 같음", stra, strb);
+
+    }else{
+
+        printf("%s, %s, 다름", stra, strb);
+
+    }
+
+}
+
 int main(){
 
     // ex_01();
     // ex_02();
     // ex_03();
     // ex_04();
-    ex_05();
+    // ex_05();
     // ex_06();
     // ex_07();
     // ex_08();
     // ex_09();
     // ex_10();
     // ex_11();
-    // ex_12();
+    ex_12();
     // ex_13();
     // ex_14();
 
