@@ -61,3 +61,6 @@ dump/
 
 # End of https://www.toptal.com/developers/gitignore/api/c
 *.txt
+
+#json관련 파일 안올림
+*.json
