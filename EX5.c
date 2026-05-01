@@ -355,25 +355,26 @@ void ex11(){
 
 }
 
-void ex12(){
+void ex12(){ //이거 여쭤볼꺼
 
-    int num[100];
+    int num[33];
 
     while(1){
 
         printf("정수입력 : ");
-        scanf("%d", &num[0]);
+        scanf("%d", &num);
 
         while(getchar() != '\n');
 
-        if(num[0] == 0) break;
+        if(num == 0) break;
+    
+        printf("    입력된 %d의 이진수는  : ", num);
 
-        printf("    입력된 %d의 이진수는  : ", num[0]);
+        int index=0;
+        for(int i = num[0]; i > 0; i = i >> 1) {
 
-        for(int i = num[0]; i > 0; i = i >> 1){
-
-            i & num[0] ? printf("1") : printf("0");
-
+            i & num[0] ? printf("1") : printf("0"); //이부분 물어볼꺼
+            index++;
         }
 
         printf("\n");
