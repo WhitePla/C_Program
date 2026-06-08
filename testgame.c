@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <time.h>
 
 struct MyStatus{
 
@@ -20,23 +21,25 @@ struct GameSetting{
 
 typedef struct MyStatus MyStatus;
 typedef struct GameSetting GameSetting;
+typedef struct tm tm;
 
 void StartSetting(MyStatus *MS, GameSetting *GS){
 
     MS -> HP = 100;
     MS -> Power = 5.0;
-
+    strcpy(MS->name, "하얀플래");
+    
     GS -> sound = 50;
-
+    
     char Start;
-
+    
     printf("게임을 처음 시작하나요? (Y/N) : ");
     Start = getchar();
-
+    
     while(getchar() != '\n');
     
     while(1){
-
+        
         if(Start == 'Y' || Start == 'y'){
             
             printf("이름을 입력하세요 : ");
@@ -47,8 +50,8 @@ void StartSetting(MyStatus *MS, GameSetting *GS){
             break;
 
         }else{
-            
-            printf("아직 구현 중 입니다.\n");
+
+            printf("DB는 아직 구현 중 입니다.\n");
             puts("");
 
             break;
@@ -58,12 +61,13 @@ void StartSetting(MyStatus *MS, GameSetting *GS){
         }
     }
     
-void Setting(GameSetting *GS){
+void Setting(GameSetting *GS, tm *today){
 
     char chose;
 
     printf("┌-----------------------------------┐\n");
     printf("|                                   |\n");
+    printf("|      날짜 : %d년 %d월 %d일        |\n", today -> tm_year + 1900, today -> tm_mon + 1, today -> tm_mday);
     printf("|             소리 : %d             |\n", GS -> sound);
     printf("|                                   |\n");
     printf("|                                   |\n");
@@ -107,6 +111,13 @@ void Status(MyStatus *MS){
 
 }
 
+void Store(MyStatus *MS){
+
+    printf("아직 구현 중 입니다");
+    puts("");
+
+}
+
 void Fight(MyStatus *MS){
 
     printf("아직 구현 중 입니다");
@@ -115,12 +126,17 @@ void Fight(MyStatus *MS){
 }
 
 int main(int argc, char *argv[]){
-
+    
+    time_t now = time(NULL);
+    
     MyStatus *MS, ms;
     GameSetting *GS, gs;
+    tm *today;
 
+    
     MS = &ms;
     GS = &gs;
+    today = localtime(&now);
 
     printf("게임 시작!\n");
 
@@ -136,7 +152,7 @@ int main(int argc, char *argv[]){
 
         printf("아래를 보고 입력하세요\n");
         puts("");
-        printf("1 : 설정 \n2 : 상태창 \n3 : 전투시작 \n0 : 게임 종료\n");
+        printf("1 : 설정 \n2 : 상태창 \n3 : 스토리 \n4 : 전투시작 \n0 : 게임 종료\n");
 
         scanf("%d", s);
 
@@ -151,7 +167,7 @@ int main(int argc, char *argv[]){
                 exit(0);
 
             case 1:
-                Setting(GS);
+                Setting(GS, today);
                 break;
             
             case 2:
@@ -159,10 +175,16 @@ int main(int argc, char *argv[]){
                 break;
 
             case 3:
+                Store(MS);
+                break;
+
+            case 4:
                 Fight(MS);
                 break;
 
             default:
+                printf("나와있는 숫자만 입력하세요");
+                puts("");
                 continue;
 
         }
